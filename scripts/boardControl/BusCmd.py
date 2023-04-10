@@ -12,8 +12,8 @@ class BusCmd():
         self.rQueue = Queue()
         self.wQueue = Queue()
 
-        # self.serialData = self.openSerialPort()
-        self.startSerialProcess()
+        self.is_running = False
+
 
 
     def openSerialPort(self):
@@ -29,15 +29,15 @@ class BusCmd():
             while True:
                 if (serialData.inWaiting()):
                     byte = serialData.read(1)
-                    self.readQueue.put(byte)
-                if (not self.writeQueue.empty()):
-                    byte = self.writeQueue.get()
+                    self.rQueue.put(byte)
+                if (not self.wQueue.empty()):
+                    byte = self.wQueue.get()
                     serialData.write(byte)
         finally:
             serialData.close()
 
     def startSerialProcess(self):
-        p = Process(target=self.openSerialPort, args=(self.wQueue, self.rQueue))
+        p = Process(target=self.openSerialPort)
         p.daemon = True
         p.start()
 
@@ -58,11 +58,14 @@ class BusCmd():
         return angles
 
     def moveServos(self, servoIDs, positions, time):
+
         numOfServos = len(servoIDs)
         # check if each servo has a corresponding time and angle
         if (len(positions) != numOfServos):
             print("WARNING. pos|time lenghts mismatch")
             return
+
+        self.is_running = True
 
         packetLength = 5 + 3 * numOfServos
         # create packet header
@@ -90,6 +93,7 @@ class BusCmd():
         # print(bytesAsHex)
         self.wQueue.put(cmdbytes)
         sleep(time / 1000)
+        self.is_running = False
 
     def powerOffServos(self):
         """
