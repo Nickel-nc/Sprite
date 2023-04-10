@@ -1,7 +1,7 @@
 # ***************************
 # Settings
 # ***************************
-from numpy import array as np_array
+import numpy as np
 
 # hexapod physical dimensions
 BASE_DIMENSIONS = {
@@ -13,7 +13,23 @@ BASE_DIMENSIONS = {
     "tibia": 135,
 }
 
-BASE_POS = np_array([
+BASE_WALK_PARAMS = {
+    "dimensions": BASE_DIMENSIONS,
+    "gaitParams": {
+        "tx": 0,
+        "tz": 0,
+        "rx": 0,
+        "ry": 0,
+        "legStance": 0,
+        "hipStance": 25,
+        "stepCount": 4,
+        "hipSwing": 25,
+        "liftSwing": 40},
+    "gaitType": 'tripod',
+    'walkMode': 'walking',
+}
+
+BASE_POS = np.array([
     500, 500, 125,               # left-back
     500, 500, 125,               # left-middle
     500, 500, 125,               # left-front
@@ -21,6 +37,17 @@ BASE_POS = np_array([
     500, 500, 875,               # right-middle
     500, 500, 875                # right-front
     ])
+
+LEGS_TRANSLATE_POS_ORDER = [4,3,2,5,0,1]
+
+LEGS_INCREMENT_CORRECTION_MATRIX = np.array([
+    1, -1, 1,
+    1, -1, 1,
+    1, -1, 1,
+    1, 1, -1,
+    1, 1, -1,
+    1, 1, -1
+])
 
 SERVO_ORDERED_LEG_NAMES = [
     "leftBack",
