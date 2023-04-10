@@ -19,7 +19,7 @@ def solveInverseKinematics(
     rawIKparams: Dict[str, float],
     flags: Dict[str, bool] = {"rotateThenShift": True},
 ) -> Dict[str, any]:
-    ikSolver, target_groundContactPoints = solveHexapodParams(
+    ikSolver, target_groundContactPoints, _ = solveHexapodParams(
         dimensions, rawIKparams, flags["rotateThenShift"]
     )
 
@@ -71,7 +71,7 @@ def solveHexapodParams(
         targets["groundContactPoints"],
         targets["axes"])
 
-    return ikSolver, targets["groundContactPoints"]
+    return ikSolver, targets["groundContactPoints"], ikSolver.r_len
 
 
 def rawParamsToNumbers(rawParams: Dict[str, any]) -> Dict[str, float]:
@@ -106,23 +106,24 @@ def buildStartPose(hipStance: float, legStance: float) -> Dict[str, Dict[str, fl
     }
 
 
-"""
-compute for the following:
-startPose:
-    - The pose of the hexapod before we
-        rotate and translate the hexapod
-    - see function buildStartPose() for details
-rotateMatrix:
-    - The transformation matrix we would use to
-        rotate the hexapod's body
-tVec
-    - The translation vector we would use to
-        shift the hexapod's body
-"""
+
 
 def convertIKparams(dimensions, rawIKparams):
-    IKparams = rawParamsToNumbers(rawIKparams)
+    """
+    compute for the following:
+    startPose:
+        - The pose of the hexapod before we
+            rotate and translate the hexapod
+        - see function buildStartPose() for details
+    rotateMatrix:
+        - The transformation matrix we would use to
+            rotate the hexapod's body
+    tVec
+        - The translation vector we would use to
+            shift the hexapod's body
+    """
 
+    IKparams = rawParamsToNumbers(rawIKparams)
 
     middle, side, tibia = dimensions['middle'], dimensions['side'], dimensions['tibia']
     tx, ty, tz = IKparams['tx'], IKparams['ty'], IKparams['tz']
@@ -134,16 +135,16 @@ def convertIKparams(dimensions, rawIKparams):
     rx, ry, rz = IKparams['rx'], IKparams['ry'], IKparams['rz']
     rotMatrix = tRotXYZmatrix(rx, ry, rz)
 
-    return tVec, startPose, rotMatrix #  {'tVec': tVec}, {'startPose': startPose}, {'rotMatrix': rotMatrix}
+    return tVec, startPose, rotMatrix
 
-"""
-compute the parameters required to solve
-for the hexapod's inverse kinematics
-see IKSolver() class for details.
-"""
+
 
 def buildHexapodTargets(hexapod, rotMatrix, tVec, rotateThenShift):
-
+    """
+    compute the parameters required to solve
+    for the hexapod's inverse kinematics
+    see IKSolver() class for details.
+    """
     # print("hexapod.legs[0]", hexapod.legs[0].ground_contacts)
     groundContactPoints = [leg.maybeGroundContactPoint for leg in hexapod.legs] # [leg.maybeGroundContactPoint for leg in hexapod.legs]
 

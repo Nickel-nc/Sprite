@@ -9,7 +9,7 @@ def getWalkSequence(dimensions,
     rawIKparams = {'tx': tx, 'ty': 0, 'tz': tz, 'legStance': legStance, 'hipStance': hipStance, 'rx': rx, 'ry': ry, 'rz': 0}
 
     # solver
-    ikSolver, *_ = solveHexapodParams(dimensions, rawIKparams, True)
+    ikSolver, _, r_len = solveHexapodParams(dimensions, rawIKparams, True)
 
     if not ikSolver.foundSolution or ikSolver.hasLegsOffGround:
         return None
@@ -20,9 +20,9 @@ def getWalkSequence(dimensions,
     hipSwings = getHipSwingRotate(aHipSwing) if walkMode == "rotating" else getHipSwingForward(aHipSwing)
 
     if gaitType == "ripple":
-        return rippleSequence(ikSolver.pose, aLiftSwing, hipSwings, stepCount)
+        return rippleSequence(ikSolver.pose, aLiftSwing, hipSwings, stepCount), r_len
     else:
-        return tripodSequence(ikSolver.pose, aLiftSwing, hipSwings, stepCount, walkMode)
+        return tripodSequence(ikSolver.pose, aLiftSwing, hipSwings, stepCount, walkMode), r_len
 
 
 def tripodSequence(pose, aLiftSwing, hipSwings, stepCount, walkMode = None):
@@ -41,7 +41,7 @@ def tripodASequence(forwardAlphaSeqs, liftGammaSeqs, liftBetaSeqs, doubleStepCou
         forward = forwardAlphaSeqs[legPosition]
         gammaLiftUp = liftGammaSeqs[legPosition]
         betaLiftUp = liftBetaSeqs[legPosition]
-        ### TODO: CHECK DATA TYPES ASSERT LISTS
+
         gammaSeq = gammaLiftUp + gammaLiftUp[::-1] + fill_array(gammaLiftUp[0], doubleStepCount)
         betaSeq = betaLiftUp + betaLiftUp[::-1] + fill_array(betaLiftUp[0], doubleStepCount)
 
