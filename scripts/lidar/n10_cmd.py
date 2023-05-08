@@ -122,22 +122,4 @@ class Lidar():
                     else:
                         if angle_max >= angle >= angle_min:
                             self.listdata.append([angle, distance, signal_strength])
-
                     cnt+=1
-
-      
-
-
-      
-
-
-
-
-
-  
-  
-
-
-
-
-  
