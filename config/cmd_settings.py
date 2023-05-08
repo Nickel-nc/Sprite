@@ -10,5 +10,5 @@ CMD_GET_POSITIONS = 0x15
 CMD_GET_BATTERY_VOLTAGE = 0x0F
 CMD_MULT_SERVO_UNLOAD = 0x14
 
-N_SERVOS = 23
-SERVO_TYPE = "lx-224 HV"
+N_SERVOS = 23  # 18 for legs, 5 for arm
+SERVO_TYPE = "lx-224 HV"  # "HTD-45H" has the same usage, but higher current draw
