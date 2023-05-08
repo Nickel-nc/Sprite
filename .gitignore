@@ -1,5 +1,5 @@
 /.idea/
 /venv/
 **/__pycache__/
-/scripts/visual/face_detection_haarcascade/detector.py
-/scripts/visual/face_detection_haarcascade/distance_estimator.py
+/Sprite/scripts/visual/face_detection_haarcascade/detector.py
+/Sprite/scripts/visual/face_detection_haarcascade/distance_estimator.py
