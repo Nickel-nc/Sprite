@@ -82,7 +82,7 @@ class Lidar():
                     cnt+=1
 
 
-    def get_limitedfront_pi_batch(self, angle_min=240, angle_max=120):
+    def get_limited_angle_batch(self, angle_min=240, angle_max=120):
         """
         Gather data for one revolute degrees cycle
         Collect angles within constrained values (filter robot blind zone)
@@ -124,31 +124,6 @@ class Lidar():
                             self.listdata.append([angle, distance, signal_strength])
 
                     cnt+=1
-
-
-
-
-if __name__ == '__main__':
-
-    import pickle
-    import time
-    lidar = Lidar()
-    c = 1
-    to_save = []
-    i = 0
-    start = input()
-    start_time = time.time()
-    while time.time() < start_time+30:
-        data = lidar.get_limitedfront_pi_batch()
-        to_save.append(data) # [str(i)] = data
-        i+=1
-        print(data)
-        time.sleep(0.2)
-
-
-    with open(f'{int(time.time())}.pkl','wb') as f:
-        pickle.dump(to_save,f)
-
 
       
 
