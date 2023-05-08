@@ -43,7 +43,10 @@ class BusCmd():
 
     @staticmethod
     def anglesToPositions(angles):
-        """Converts -120/120 to 0-1000 (servo pulse)"""
+        """
+        Converts -120/120 to 0-1000 (servo pulse)
+        Angle range constrained by servo type
+        """
         positions = []
         for angle in angles:
             positions.append(int(round((angle + 120) / 240 * 1000)))
@@ -51,7 +54,10 @@ class BusCmd():
 
     @staticmethod
     def positionsToAngles(positions):
-        """converts 0-1000 (servo position unit as integer) to -120/120"""
+        """
+        Converts 0-1000 (servo position unit as integer) to -120/120
+        Angle range constrained by servo type
+        """
         angles = []
         for pos in positions:
             angles.append((pos / 1000 * 240) - 120)
