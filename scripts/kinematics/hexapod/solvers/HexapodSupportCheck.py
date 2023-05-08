@@ -1,4 +1,4 @@
-from Sprite.config.ik_settings import POSITION_NAME_TO_IS_LEFT_MAP
+from config.ik_settings import POSITION_NAME_TO_IS_LEFT_MAP
 
 class HexapodSupportCheck:
     reason = {

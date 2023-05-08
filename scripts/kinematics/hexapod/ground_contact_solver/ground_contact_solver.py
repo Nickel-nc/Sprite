@@ -26,8 +26,8 @@ the hexapod's neutral position
 ie this height is distance between the cog and the plane defined by ground contacts.
 """
 
-from Sprite.scripts.kinematics.hexapod.utils.points import dot, get_normal_given_three_points
-from Sprite.scripts.kinematics.hexapod.ground_contact_solver.shared import (
+from scripts.kinematics.hexapod.utils.points import dot, get_normal_given_three_points
+from scripts.kinematics.hexapod.ground_contact_solver.shared import (
     is_stable,
     is_lower,
     find_legs_on_ground,

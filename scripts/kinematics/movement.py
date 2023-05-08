@@ -4,11 +4,11 @@ sys.path.append(os.getcwd())
 
 import numpy as np
 
-from Sprite.scripts.kinematics.hexapod.solvers.walkSequenceSolver import getWalkSequence
-from Sprite.config.ik_settings import (BASE_POS, SERVO_ORDERED_LEG_NAMES,
-                                       LEGS_INCREMENT_CORRECTION_MATRIX, BASE_WALK_PARAMS)
+from scripts.kinematics.hexapod.solvers.walkSequenceSolver import getWalkSequence
+from config.ik_settings import (BASE_POS, SERVO_ORDERED_LEG_NAMES,
+                                LEGS_INCREMENT_CORRECTION_MATRIX, BASE_WALK_PARAMS)
 
-from Sprite.config.poses import (LEG_SERVO_IDS)
+from config.poses import (LEG_SERVO_IDS)
 
 
 global CMD, LIDAR

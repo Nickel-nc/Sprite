@@ -65,9 +65,9 @@
 """
 import numpy as np
 from functools import reduce
-from Sprite.scripts.kinematics.hexapod.utils.geometry import tRotYmatrix, tRotZmatrix
-from Sprite.config.ik_settings import LEG_POINT_TYPES_LIST, POSITION_NAME_TO_ID_MAP, POSITION_NAME_TO_AXIS_ANGLE_MAP
-from Sprite.scripts.kinematics.hexapod.utils.vector import Vector
+from scripts.kinematics.hexapod.utils.geometry import tRotYmatrix, tRotZmatrix
+from config.ik_settings import LEG_POINT_TYPES_LIST, POSITION_NAME_TO_ID_MAP, POSITION_NAME_TO_AXIS_ANGLE_MAP
+from scripts.kinematics.hexapod.utils.vector import Vector
 
 class Linkage():
     def __init__(self, dimensions, position, originPoint = Vector(0,0,0), pose = {"alpha": 0, "beta": 0, "gamma": 0}, flags = {"hasNoPoints": False}):

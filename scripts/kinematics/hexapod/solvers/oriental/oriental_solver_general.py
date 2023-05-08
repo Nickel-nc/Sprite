@@ -37,10 +37,10 @@ For each combination:
 """
 import random
 
-from Sprite.scripts.kinematics.hexapod.solvers.oriental.oriental_helper import (
+from scripts.kinematics.hexapod.solvers.oriental.oriental_helper import (
     SOME_LEG_ID_TRIOS, ADJACENT_LEG_ID_TRIOS, isStable, isLower, findLegsOnGround
 )
-from Sprite.scripts.kinematics.hexapod.utils.geometry import dot, get_normal_of_three_points
+from scripts.kinematics.hexapod.utils.geometry import dot, get_normal_of_three_points
 
 # def make_joint_index_trios():
 #     return [[i, j, k] for i in range(3, 0, -1) for j in range(3, 0, -1) for k in range(3, 0, -1)]

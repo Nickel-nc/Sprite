@@ -1,4 +1,4 @@
-from Sprite.scripts.kinematics.hexapod.solvers.hexapodSolver import solveHexapodParams
+from scripts.kinematics.hexapod.solvers.hexapodSolver import solveHexapodParams
 
 def getWalkSequence(dimensions,
                     params = {'tx': 0, 'tz': 0, 'rx': 0, 'ry': 0, 'legStance': 0, 'hipStance': 25, 'stepCount': 5, 'hipSwing': 25, 'liftSwing': 40},

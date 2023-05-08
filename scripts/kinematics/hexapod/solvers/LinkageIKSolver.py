@@ -1,10 +1,10 @@
-from Sprite.scripts.kinematics.hexapod.utils.vector import Vector
-from Sprite.scripts.kinematics.hexapod.utils.geometry import (
+from scripts.kinematics.hexapod.utils.vector import Vector
+from scripts.kinematics.hexapod.utils.geometry import (
     vectorFromTo, angleBetween, radians, vectorLength, angleOppositeOfLastSide, isTriangle
 )
 import math
 
-from Sprite.scripts.kinematics.hexapod.solvers.IKInfo import LegIKInfo
+from scripts.kinematics.hexapod.solvers.IKInfo import LegIKInfo
 
 class LinkageIKSolver:
     def __init__(self, legPosition):

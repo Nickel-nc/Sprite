@@ -1,5 +1,5 @@
-from Sprite.config.ik_settings import LEG_NAMES
-from Sprite.scripts.kinematics.hexapod.utils.vector import Vector
+from config.ik_settings import LEG_NAMES
+from scripts.kinematics.hexapod.utils.vector import Vector
 
 
 class Hexagon:

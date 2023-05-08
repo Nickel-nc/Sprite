@@ -1,7 +1,7 @@
 import numpy as np
 
-from Sprite.config.ik_settings import POSITION_NAME_TO_ID_MAP
-from Sprite.scripts.kinematics.hexapod.utils.geometry import degrees
+from config.ik_settings import POSITION_NAME_TO_ID_MAP
+from scripts.kinematics.hexapod.utils.geometry import degrees
 
 
 def mightTwist(legsOnGround):

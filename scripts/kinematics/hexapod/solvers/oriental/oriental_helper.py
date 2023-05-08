@@ -1,5 +1,5 @@
-from Sprite.scripts.kinematics.hexapod.utils.geometry import dot, cross, vectorFromTo
-from Sprite.scripts.kinematics.hexapod.utils.points import Vector
+from scripts.kinematics.hexapod.utils.geometry import dot, cross, vectorFromTo
+from scripts.kinematics.hexapod.utils.points import Vector
 
 def isLower(point, normal, height, tol=1):
     return -dot(normal, point) > height + tol

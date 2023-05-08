@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from Sprite.scripts.lidar.n10_cmd import Lidar
+from scripts.lidar.n10_cmd import Lidar
 
 """Matplolib visualizer for real time point cloud estimation"""
 

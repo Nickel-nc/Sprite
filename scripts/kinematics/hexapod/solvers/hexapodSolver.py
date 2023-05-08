@@ -1,6 +1,6 @@
-from Sprite.config.ik_settings import LEG_NAMES
+from config.ik_settings import LEG_NAMES
 
-from Sprite.scripts.kinematics.hexapod.utils.geometry import (
+from scripts.kinematics.hexapod.utils.geometry import (
     tRotZmatrix,
     tRotXYZmatrix,
     vectorFromTo,
@@ -8,10 +8,10 @@ from Sprite.scripts.kinematics.hexapod.utils.geometry import (
     isCounterClockwise,
 )
 
-from Sprite.scripts.kinematics.hexapod.utils.vector import Vector
+from scripts.kinematics.hexapod.utils.vector import Vector
 
-from Sprite.scripts.kinematics.hexapod.Hexapod import Hexapod
-from Sprite.scripts.kinematics.hexapod.solvers.IKSolver import IKSolver
+from scripts.kinematics.hexapod.Hexapod import Hexapod
+from scripts.kinematics.hexapod.solvers.IKSolver import IKSolver
 from typing import List, Dict, Tuple
 
 def solveInverseKinematics(

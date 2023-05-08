@@ -1,16 +1,16 @@
 import sys
 sys.path.append("/")
 
-from Sprite.config.ik_settings import LEG_NAMES, POSITION_NAME_TO_ID_MAP, DEFAULT_POSE
-from Sprite.scripts.kinematics.hexapod.utils.geometry import matrixToAlignVectorAtoB, tRotZmatrix
+from config.ik_settings import LEG_NAMES, POSITION_NAME_TO_ID_MAP, DEFAULT_POSE
+from scripts.kinematics.hexapod.utils.geometry import matrixToAlignVectorAtoB, tRotZmatrix
 
-from Sprite.scripts.kinematics.hexapod.utils.vector import Vector
-from Sprite.scripts.kinematics.hexapod.Hexagon import Hexagon
-from Sprite.scripts.kinematics.hexapod.Linkage import Linkage
+from scripts.kinematics.hexapod.utils.vector import Vector
+from scripts.kinematics.hexapod.Hexagon import Hexagon
+from scripts.kinematics.hexapod.Linkage import Linkage
 
-from Sprite.scripts.kinematics.hexapod.solvers.oriental import oriental_solver_general as oSolverGeneral
-from Sprite.scripts.kinematics.hexapod.solvers.oriental import oriental_solver_specific as oSolverSpecific
-from Sprite.scripts.kinematics.hexapod.solvers.twistSolver import simpleTwist, mightTwist, complexTwist
+from scripts.kinematics.hexapod.solvers.oriental import oriental_solver_specific as oSolverSpecific, \
+    oriental_solver_general as oSolverGeneral
+from scripts.kinematics.hexapod.solvers.twistSolver import simpleTwist, mightTwist, complexTwist
 
 
 

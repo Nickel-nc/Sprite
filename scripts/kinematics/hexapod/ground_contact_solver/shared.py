@@ -1,6 +1,6 @@
 from math import isclose
 
-from Sprite.scripts.kinematics.hexapod.utils.points import (
+from scripts.kinematics.hexapod.utils.points import (
     Vector,
     dot,
     cross,

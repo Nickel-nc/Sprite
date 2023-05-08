@@ -1,5 +1,5 @@
-from Sprite.scripts.kinematics.hexapod.utils.geometry import dot, get_normal_of_three_points
-from Sprite.scripts.kinematics.hexapod.solvers.oriental.oriental_helper import (
+from scripts.kinematics.hexapod.utils.geometry import dot, get_normal_of_three_points
+from scripts.kinematics.hexapod.solvers.oriental.oriental_helper import (
     SOME_LEG_ID_TRIOS, ADJACENT_LEG_ID_TRIOS,
     isStable, findLegsOnGround, isLower)
 

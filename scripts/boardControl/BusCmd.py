@@ -3,7 +3,7 @@ from time import sleep
 import serial
 from multiprocessing import Process, Queue
 
-from Sprite.config.cmd_settings import *
+from config.cmd_settings import *
 
 
 

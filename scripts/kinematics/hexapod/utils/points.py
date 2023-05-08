@@ -5,7 +5,7 @@
 
 import numpy as np
 
-from Sprite.config.ik_settings import DEBUG_MODE
+from config.ik_settings import DEBUG_MODE
 
 
 class Vector:

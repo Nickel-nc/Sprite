@@ -1,5 +1,5 @@
 import numpy as np
-from Sprite.scripts.kinematics.hexapod.utils.vector import Vector
+from scripts.kinematics.hexapod.utils.vector import Vector
 
 def vectorFromTo(a,b):
     return Vector(b.x - a.x, b. y - a.y, b.z - a.z)

@@ -1,5 +1,5 @@
-from Sprite.scripts.actionGroupControl import ActionGroupControl as AGC
-from Sprite.scripts.boardControl import BusCmd as cmd
+from scripts.actionGroupControl import ActionGroupControl as AGC
+from scripts.boardControl import BusCmd as cmd
 import time
 import numpy as np
 

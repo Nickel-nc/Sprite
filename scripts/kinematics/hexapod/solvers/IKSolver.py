@@ -1,10 +1,10 @@
-from Sprite.scripts.kinematics.hexapod.solvers.LinkageIKSolver import LinkageIKSolver
-from Sprite.scripts.kinematics.hexapod.solvers.HexapodSupportCheck import HexapodSupportCheck
-from Sprite.scripts.kinematics.hexapod.solvers.IKInfo import IKMessage
+from scripts.kinematics.hexapod.solvers.LinkageIKSolver import LinkageIKSolver
+from scripts.kinematics.hexapod.solvers.HexapodSupportCheck import HexapodSupportCheck
+from scripts.kinematics.hexapod.solvers.IKInfo import IKMessage
 
-from Sprite.config.ik_settings import (LEG_NAMES, NUMBER_OF_LEGS, POSITION_NAME_TO_AXIS_ANGLE_MAP, MAX_ANGLES)
+from config.ik_settings import (LEG_NAMES, NUMBER_OF_LEGS, POSITION_NAME_TO_AXIS_ANGLE_MAP, MAX_ANGLES)
 
-from Sprite.scripts.kinematics.hexapod.utils.geometry import (
+from scripts.kinematics.hexapod.utils.geometry import (
     vectorFromTo,
     projectedVectorOntoPlane,
     getUnitVector,
