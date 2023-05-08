@@ -28,14 +28,14 @@ For each combination:
 """
 
 import random
-from scripts.kinematics.hexapod.ground_contact_solver.shared import (
+from Sprite.scripts.kinematics.hexapod.ground_contact_solver.shared import (
     is_stable,
     is_lower,
     find_legs_on_ground,
     SOME_LEG_TRIOS,
     ADJACENT_LEG_TRIOS,
 )
-from scripts.kinematics.hexapod.utils.points import get_normal_given_three_points, dot
+from Sprite.scripts.kinematics.hexapod.utils.points import get_normal_given_three_points, dot
 
 OTHER_POINTS_MAP = {1: (2, 3), 2: (3, 1), 3: (1, 2)}
 
