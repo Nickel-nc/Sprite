@@ -13,9 +13,6 @@ Include the following steps
 
 ---
 
-<details>
-  <summary>Show more</summary>
-
 - Exclude blind zone by cutting lidar input range (current setup: 240 degrees)
 - Convert to discret angles with fixed angle step. Due to motor physics lidar returns data with inconstant angles in low threshold. 
 (current setup: 1 degree resolution)
@@ -71,14 +68,10 @@ data entry example
     1978, 1900, 1837, 1760, 1651, 1605, 1558, 1512, 1435]}, 
 }
   ```
-</details>
 
 ### Grid-based processing
 
 ---
-
-<details>
-  <summary>Show more</summary>
 
 Involves occupancy grid structure for environment representation in 2D space,
 created in [occupancy_grid.py](occupancy_grid.py)
@@ -92,14 +85,9 @@ Occupancy grid is probability based and has several grids in total:
 - A grid of rays (spokes) emanating from the robot's position to cover the entire field of view of the lidar sensor.
 The function calculates the bearing index for each ray based on its angle relative to the robot's orientation.
 
-</details>
-
 ### Point clouds matching
 
 ---
-
-<details>
-  <summary>Show more</summary>
 
 Tested with 2 matchers type:
 - icp algorithm for real distance data, that involve iterative least-squares solutions using point. Used as a support reference.
@@ -112,28 +100,19 @@ Implemented in
 |:------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------:|
 | frames to be matched <img width="1200" alt="frames to be matched" src="./../../support_docs/images/scan_matching_1.png"> | matched frames <img width="1200" alt="matched frames" src="./../../support_docs/images/scan_matching_2.png"> |
 
-</details>
-
 
 ### Keep localize and store history
 
 ---
 
-<details>
-  <summary>Show more</summary>
-
 [fast_slam.py](fast_slam.py)
 
-<img width="1200" alt="SLAM_output" src="./../../support_docs/images/SLAM_output.gif">
-
-</details>
+<img width="1000" alt="SLAM_output" src="./../../support_docs/images/SLAM_output.gif">
 
 
 ### References
 
 ---
-<details>
-  <summary>Show more</summary>
 
 [PythonRobotics. Nice algorithmic base](https://github.com/AtsushiSakai/PythonRobotics)
 
@@ -143,5 +122,3 @@ Implemented in
 
 [Paper: Robot Pose Estimation in Unknown Environments
 by Matching 2D Range Scans](http://robotics.caltech.edu/wiki/images/2/27/LuMilios_Paper.pdf)
-
-</details>
