@@ -2,15 +2,38 @@ import numpy as np
 import pickle
 from glob import glob
 from scripts.SLAM.icp import ICP
+from scripts.lidar.n10_cmd import Lidar
 
-class PreprocessLidarData():
-    def __init__(self, min_angle=240, max_angle=120, angle_resolution=1):
+class LidarDataProcessor():
+    def __init__(self, min_angle=240, max_angle=120, angle_resolution=1, icp_distance_thr=280):
         self.min_angle = min_angle
         self.max_angle = max_angle
         self.angle_range = self.get_angle_range()
+        self.icp_distance_thr = icp_distance_thr
 
         self.bins = np.arange(0, self.angle_range, angle_resolution)
 
+        self.icp = ICP()
+        self.lidar = Lidar()
+
+        self.init_scan()
+
+
+    def init_scan(self):
+
+        raw_data = self.lidar.get_limited_angle_batch()
+        data_range = self.convert_data_to_range(raw_data)
+
+        self.reference_points = self.icp.point_cloud_to_pairs(raw_data)
+
+        self.displacement = np.zeros(3)
+
+        self.data = {
+        "range": list(data_range),
+        "x": 0,
+        "y": 0,
+        "theta": 0.
+        }
 
     def get_angle_range(self):
 
@@ -22,7 +45,7 @@ class PreprocessLidarData():
 
     def convert_data_to_range(self, data_points):
         """
-        convert data points to
+        Distribute data points to bins of fixed angles
 
         # Sanity check for outliers in sensor measurement (rare 0 dist window)
         """
@@ -48,12 +71,39 @@ class PreprocessLidarData():
         return range_data.astype(int)
 
 
+    def scan_frame(self):
+
+        raw_data = self.lidar.get_limited_angle_batch()
+
+        points_to_be_aligned = self.icp.point_cloud_to_pairs(raw_data)
+        transformation_history, aligned_points = self.icp.icp(self.reference_points,
+                                                              points_to_be_aligned,
+                                                              distance_threshold=self.icp_distance_thr,
+                                                              verbose=False)
+
+        self.displacement += transformation_history
+
+        data_range = self.convert_data_to_range(raw_data)
+
+        self.data = {
+        "range": list(data_range),
+        "x": self.displacement[0],
+        "y": self.displacement[1],
+        "theta": self.displacement[2]
+        }
+
+        self.reference_points = points_to_be_aligned
+
+    def close_lidar_port(self):
+        self.lidar.close_port()
+
+
 if __name__ == "__main__":
     """Debug test usage"""
 
     import time, os
 
-    p = PreprocessLidarData()
+    p = LidarDataProcessor()
     icp = ICP()
     # read raw_data
     files = glob("test_data/raw_data/*.pkl")
