@@ -189,7 +189,7 @@ if __name__ == "__main__":
 
     icp = ICP()
 
-    files = glob("test_data/*.pkl")
+    files = glob("test_data/raw_data/*.pkl")
     with open(files[0], 'rb') as f:
         data = pickle.load(f)
 
@@ -197,9 +197,9 @@ if __name__ == "__main__":
 
 
     print("data_length", data_length)
-    print("data_length", data[0])
+    # print("data entry", data[0])
 
-    plt.figure(figsize=(20, 16))
+    # plt.figure(figsize=(20, 16))
     if len(data) > 0:
 
         reference_points = icp.point_cloud_to_pairs(data[0])
@@ -207,7 +207,7 @@ if __name__ == "__main__":
         displacement = np.zeros(3)
 
         for i in range(1, data_length):
-            # plt.figure(figsize=(20, 16))
+            plt.figure(figsize=(20, 16))
             points_to_be_aligned = icp.point_cloud_to_pairs(data[i])
 
             transformation_history, aligned_points = icp.icp(reference_points,
@@ -216,9 +216,9 @@ if __name__ == "__main__":
                                                              verbose=False)
 
             displacement += transformation_history
-            msg = f"i:{i}, dx: {round(displacement[0],0)}, xy: {round(displacement[1])}, rotate: {round(np.degrees(displacement[2]),2)}"
+            msg = f"matching results:{i}, dx: {round(displacement[0],0)}, xy: {round(displacement[1])}, rotate: {round(np.degrees(displacement[2]),2)}"
 
-            print(msg)
+            # print(msg)
             points = points_to_be_aligned
             c, s = math.cos(displacement[2]), math.sin(displacement[2])
             rot = np.array([[c, -s],
@@ -227,7 +227,17 @@ if __name__ == "__main__":
             points[:, 0] += displacement[0]
             points[:, 1] += displacement[1]
 
-            plt.scatter(*zip(*points))
+
+            plt.scatter(*zip(*reference_points), label='reference_points', marker='.', c='blue')
+            plt.scatter(*zip(*aligned_points), label='aligned_points', marker='.', c='green')
+            # plt.scatter(*zip(*points_to_be_aligned), label='points_to_be_aligned', marker='.', c='red')
+
+            plt.xlim(-1000,2500)
+            plt.ylim(-3500, 1500)
+            plt.legend()
+            plt.grid()
+            plt.title(msg)
+            plt.savefig('t2.png')
+            plt.show()
 
             reference_points = points_to_be_aligned
-        plt.show()
