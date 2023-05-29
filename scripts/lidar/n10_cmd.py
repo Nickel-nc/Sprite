@@ -10,8 +10,8 @@ class Lidar():
         self.init_port()
 
     def init_port(self):
-        self.ser = serial.Serial("COM3", 230400, timeout=5)
-        # self.ser = serial.Serial("/dev/ttyUSB0", 230400, timeout=5)
+        # self.ser = serial.Serial("COM3", 230400, timeout=5)  # for desktop debug
+        self.ser = serial.Serial("/dev/ttyUSB0", 230400, timeout=5)
 
 
     def close_port(self):
