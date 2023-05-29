@@ -1,5 +1,5 @@
 # ***************************
-# Settings
+# Inverse Kinematics Settings
 # ***************************
 import numpy as np
 
@@ -14,7 +14,6 @@ BASE_DIMENSIONS = {
 }
 
 THR = 20
-
 # Obstacle free distance space in front of robot
 MOVING_FRONT_SAFE_DISTANCE = BASE_DIMENSIONS['coxia'] + BASE_DIMENSIONS['femur'] + THR
 # Obstacle free distance space on side of robot
@@ -22,11 +21,6 @@ MOVING_REAR_SAFE_DISTANCE = MOVING_FRONT_SAFE_DISTANCE + BASE_DIMENSIONS['side']
 
 ACTION_FRONT_SAFE_DISTANCE = MOVING_FRONT_SAFE_DISTANCE + BASE_DIMENSIONS['tibia']
 ACTION_REAR_SAFE_DISTANCE = ACTION_FRONT_SAFE_DISTANCE + BASE_DIMENSIONS['tibia']
-
-print("MOVING_FRONT_SAFE_DISTANCE", MOVING_FRONT_SAFE_DISTANCE)
-print("MOVING_REAR_SAFE_DISTANCE", MOVING_REAR_SAFE_DISTANCE)
-
-
 
 BASE_WALK_PARAMS = {
     "dimensions": BASE_DIMENSIONS,
@@ -142,43 +136,18 @@ POSITION_NAME_TO_IS_LEFT_MAP = {
     "rightBack": False,
 }
 
+MAX_HIP_SWING = 25
+P_LEN = 90
 NUMBER_OF_LEGS = 6
-
-# BASE_HEXAPOD = VirtualHexapod(BASE_DIMENSIONS)
-
-# The range of each leg joint in degrees
-# ALPHA_MAX_ANGLE = 90
-# BETA_MAX_ANGLE = 120
-# GAMMA_MAX_ANGLE = 120
 BODY_MAX_ANGLE = 20
-
-# LEG STANCE
-# would define the starting leg position used to compute
-# the target ground contact for inverse kinematics poses
-# femur/ beta = -leg_stance
-# tibia/ gamma = leg_stance
 LEG_STANCE_MAX_ANGLE = 90
-
-# HIP STANCE
-# would defined the starting hip position used to compute
-# the target ground contact for inverse kinematics poses
-# coxia/alpha angle of
-#  right_front = -hip_stance
-#   left_front = +hip_stance
-#    left_back = -hip_stance
-#   right_back = +hip_stance
-#  left_middle = 0
-# right_middle = 0
 HIP_STANCE_MAX_ANGLE = 20
-
 DEBUG_MODE = False
 ASSERTION_ENABLED = False
-
 # The inverse kinematics solver already updates the points of the hexapod
 # But there is no guarantee that this pose is correct
 # So better update a fresh hexapod with the resulting poses
 RECOMPUTE_HEXAPOD = True
-
 PRINT_IK_LOCAL_LEG = False
 PRINT_IK = False
 PRINT_MODEL_ON_UPDATE = False
