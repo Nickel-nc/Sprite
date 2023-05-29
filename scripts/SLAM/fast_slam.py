@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 from scripts.SLAM.occupancy_grid import OccupancyGrid
 from scripts.SLAM.og_scan_matcher import ScanMatcher
-from config.slam_settings import (ogParameters, smParameters, numParticles)
+from config.slam_settings import (OG_PARAMETERS, SM_PARAMETERS, NUM_PARTICLES)
 import math
 import copy
 
@@ -37,8 +37,7 @@ class ParticleFilter:
         variance = 0
         for i in range(self.numParticles):
             variance += (self.particles[i].weight - 1 / self.numParticles) ** 2
-            #variance += self.particles[i].weight**2
-        print(variance)
+
         if variance > ((self.numParticles - 1) / self.numParticles)**2 + (self.numParticles - 1.000000000000001) * (1 / self.numParticles)**2:
         #if variance > 2 / self.numParticles:
             return True
@@ -149,7 +148,6 @@ class Particle:
         self.yTrajectory.append(y)
         self.thetaTrajectory.append(round(math.degrees(theta),2))
 
-
     def plotParticle(self):
 
         plt.figure(figsize=(20, 20))
@@ -166,10 +164,8 @@ def process_sensor_data(pf, sensorData, save_dir='test_data', plot_trajectory=Tr
 
     count = 0
     plt.figure(figsize=(20, 20))
-    # print("sensorData.keys()", sensorData.keys())
     for key in sorted(sensorData.keys()):
         count += 1
-        print('count:', count)
         pf.updateParticles(sensorData[key], count)
         if pf.weightUnbalanced():
             pf.resample()
@@ -210,7 +206,7 @@ def main():
         input = pickle.load(f)
         sensorData = input['map']
 
-    pf = ParticleFilter(numParticles, ogParameters, smParameters)
+    pf = ParticleFilter(NUM_PARTICLES, OG_PARAMETERS, SM_PARAMETERS)
     process_sensor_data(pf, sensorData, plot_trajectory=True)
 
 
